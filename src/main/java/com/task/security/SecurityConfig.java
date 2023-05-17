@@ -16,8 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/api/v1/employee/**")
+                .antMatchers("/h2-console/**").permitAll().anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic();
@@ -27,9 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}user")
-                .roles("USER");
+                .withUser("ana")
+                .password("{noop}ana")
+                .roles("ADMIN");
     }
 //    @Bean
 //    public static NoOpPasswordEncoder noOpPasswordEncoder(){
